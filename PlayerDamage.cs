@@ -16,11 +16,15 @@ public class PlayerDamage : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision other) 
+    private void OnCollisionEnter2D(Collision2D other) 
     {
         if(other.gameObject.CompareTag("damage"))
         {
             Debug.Log("Took 1 Damage");
+        }
+        else
+        {
+            Debug.Log(other.gameObject.tag.ToString());
         }
     }
 }
