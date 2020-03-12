@@ -10,7 +10,7 @@ public class CameraMovimento : MonoBehaviour
 
     private void Start() 
     {
-        Movimento = transform.position - Player.transform.position;
+        Movimento = transform.position - Player.transform.position + new Vector3(0,20,0);
     }
 
     // Update is called once per frame
