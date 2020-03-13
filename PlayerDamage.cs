@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerDamage : MonoBehaviour
 {
+    public GameObject RespawnPosition;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,7 @@ public class PlayerDamage : MonoBehaviour
     {
         if(other.gameObject.CompareTag("damage"))
         {
+            gameObject.transform.position = RespawnPosition.transform.position;
             Debug.Log("Took 1 Damage");
         }
         else
