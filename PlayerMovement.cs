@@ -16,8 +16,10 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Player Public Variables")]
     public int vida;
+    public int energiaMax;
     public int energia;
-    public int forca;
+    public int velocidadeMax;
+    public int velocidadeCimaMax;
 
     // Start is called before the first frame update
     void Start()
@@ -57,7 +59,10 @@ public class PlayerMovement : MonoBehaviour
             }
             if(Input.GetAxis("Horizontal")==0 && Input.GetAxis("Vertical")==0)
             {
-                energia++;
+                if(energia < energiaMax)
+                {
+                    energia++;
+                }
             }
         }
         else //sem energia
@@ -76,22 +81,22 @@ public class PlayerMovement : MonoBehaviour
     {
         if(upPressed)
         {
-            playerRB.AddForce(transform.up * forca);
+            playerRB.transform.Translate(new Vector2(0,-velocidadeMax) * Time.deltaTime);
             energia--;
         }
         if(downPressed)
         {
-            playerRB.AddForce(-transform.up * forca);
+            playerRB.transform.Translate(new Vector2(0,velocidadeCimaMax) * Time.deltaTime);
             energia--;
         }
         if(rightPressed)
         {
-            playerRB.AddForce(transform.right * forca);
+            playerRB.transform.Translate(new Vector2(-velocidadeMax,0) * Time.deltaTime);
             energia--;
         }
         if(leftPressed)
         {
-            playerRB.AddForce(-transform.right * forca);
+            playerRB.transform.Translate(new Vector2(velocidadeMax,0) * Time.deltaTime);
             energia--;
         }
     }
