@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public int energia;
     public int velocidadeMax;
     public int velocidadeCimaMax;
+    public int cooldownRecovery;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(energia>0) //com energia
+        if(energia>0 && cooldownRecovery >= 20) //com energia
         {
             //setting if pressed
             if(Input.GetAxis("Vertical")>0)
@@ -67,6 +68,14 @@ public class PlayerMovement : MonoBehaviour
         }
         else //sem energia
         {
+            if(energia == 0)
+            {
+                cooldownRecovery = 0;
+            }
+            else if(cooldownRecovery <20)
+            {
+                cooldownRecovery++;
+            }
             rightPressed = false;
             leftPressed = false;
             upPressed = false;
